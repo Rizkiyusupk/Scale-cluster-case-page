@@ -1,0 +1,30 @@
+- name: install kubernetes
+  hosts: masters,workers
+  become: yes
+
+  tasks:
+    - name: add gpg key
+      ansible.builtin.shell: curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor --batch --yes -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: add gpg2
+      ansible.builtin.shell: echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+    - name: update package
+      ansible.builtin.shell: apt update
+    - name: install k8s
+      ansible.builtin.apt:
+        name: kubelet
+        state: present
+    - name: install k8s2
+      ansible.builtin.apt:
+        name: kubeadm
+        state: present
+    - name: install k8s3
+      ansible.builtin.apt:
+        name: kubectl
+        state: present
+    - name: enable kubelet
+      ansible.builtin.systemd:
+        state: started
+        enabled: yes
+        name: kubelet

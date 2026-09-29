@@ -1,0 +1,13 @@
+- name: disable swap permanent
+  hosts: masters,workers
+  become: yes
+  tasks:
+    - name: comment out swap di fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        regexp: '^/swap'
+        line: '#/swap.img       none    swap    sw      0       0'
+        state: present
+
+    - name: disable swap sekarang
+      ansible.builtin.command: swapoff -a

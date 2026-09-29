@@ -1,0 +1,22 @@
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: 'telegram-notif'
+      group_by: ['alertname']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      routes:
+        - matchers:
+            - alertname = "Watchdog"
+          receiver: 'null'
+    receivers:
+      - name: 'null'
+      - name: 'telegram-notif'
+        telegram_configs:
+          - bot_token: 'BOT-TOKEN'
+            chat_id: 1854226173
+            parse_mode: 'HTML'
+            send_resolved: true

@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: jenkins-deployler-role
+rules:
+- apiGroups: ["","apps"]
+  resources: ["secrets","services","pods","deployments"]
+  verbs: ["get", "watch", "list","get", "watch", "create", "update", "patch", "delete"]

@@ -1,0 +1,13 @@
+- name: install observ tech stack
+  hosts: masters-cluster-2
+  become: true
+
+  tasks:
+    - name: install helm
+      ansible.builtin.shell:    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    - name: add repo for node-exporter
+      ansible.builtin.shell: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    - name: update package
+      ansible.builtin.shell: helm repo update
+    - name: install package
+      ansible.builtin.shell: helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring  --kubeconfig /home/ubuntu/.kube/config --create-namespace 

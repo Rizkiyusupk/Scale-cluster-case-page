@@ -1,0 +1,12 @@
+- name: update package
+  hosts: Jenkins
+  become: yes
+
+  tasks:
+    - name: update package
+      ansible.builtin.command: apt update
+    - name: install openjdk
+      ansible.builtin.shell: apt install openjdk-21-jdk -y
+
+    - name: make sure java already installed
+      ansible.builtin.shell: java --version
