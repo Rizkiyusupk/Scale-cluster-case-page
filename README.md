@@ -64,6 +64,11 @@ k8s/
 ├── playbook-install-terraform-bare-metal.yaml
 ├── observ.yaml
 ├── observ_2.yaml
+├── service-account.yaml
+├── clusterrole.yaml
+├── role-binding.yaml
+├── secret-token.yaml
+├── kubeconfig.sh
 ```
 
 dan yang terakhir yang ketiga di cluster 
