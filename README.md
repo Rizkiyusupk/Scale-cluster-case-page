@@ -15,7 +15,7 @@ baca [klik disini](https://rizkiyusupk.github.io/devops/clouds/linux/server/iac/
 | **Worker 2-Cluster-Bandung**| 2 cores | 2GB  | 10GB    | 1 Adapters   ( Static Ip )          |
 | **Jenkins**                 | 7 cores | 7GB  | 240GB   |                Wlan                 |
 
-![aevferb](/asset/work.png)
+![aevferb](/asset/aksisvd.png)
 
 ### STRUCTURE FOLDER 
 
