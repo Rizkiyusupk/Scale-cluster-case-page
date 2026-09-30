@@ -15,3 +15,6 @@ k8s-master-cluster-2 ansible_host=10.10.10.222 ansible_user=ubuntu ansible_passw
 [workers-cluster-2]
 k8s-worker1-cluster-2 ansible_host=10.10.10.123 ansible_user=ubuntu ansible_password=iki123
 k8s-worker2-cluster-2 ansible_host=10.10.10.67 ansible_user=ubuntu ansible_password=iki123
+
+[all:vars]
+ansible_ssh_common_args='-o ProxyJump=rizki@192.168.100.36 -o StrictHostKeyChecking=no'
