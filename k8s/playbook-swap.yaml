@@ -1,5 +1,5 @@
 - name: disable swap permanent
-  hosts: masters,workers
+  hosts: your cluster ip
   become: yes
   tasks:
     - name: comment out swap di fstab

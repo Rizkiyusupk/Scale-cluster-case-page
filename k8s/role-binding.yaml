@@ -2,11 +2,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: jenkins-role-binding
-  namespace: app-jakarta
+  namespace: app-$site
 subjects:
 - kind: ServiceAccount
   name: jenkins-deployer
-  namespace: app-jakarta
+  namespace: app-$site
 roleRef:
   kind: ClusterRole
   name: jenkins-deployler-role

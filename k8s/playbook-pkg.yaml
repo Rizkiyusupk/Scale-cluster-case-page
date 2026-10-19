@@ -1,5 +1,5 @@
 - name: install packages
-  hosts: masters,workers
+  hosts: your cluster ip
   become: yes
   
 

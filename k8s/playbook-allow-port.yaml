@@ -1,5 +1,5 @@
 - name: allow port
-  hosts: workers
+  hosts: your cluster ip
   become: yes
 
   tasks:
@@ -15,7 +15,7 @@
         proto: tcp
 
 - name: allow port2
-  hosts: masters
+  hosts: your cluster ip
   become: yes
 
   tasks:
@@ -35,7 +35,7 @@
         rule: allow
         proto: tcp
 - name: daemon-reload
-  hosts: masters,workers
+  hosts: your cluster ip
   become: yes
 
 
