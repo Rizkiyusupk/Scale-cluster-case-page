@@ -72,3 +72,5 @@ dan yang terakhir yang ketiga di cluster
 cluster-side/
 ├── alertmanager-telegram.yaml
 ```
+
+untuk full docs ada [disini](https://rizkiyusupk.github.io/case-studies/scale-nodes/) 
