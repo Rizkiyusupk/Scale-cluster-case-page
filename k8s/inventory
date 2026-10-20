@@ -1,20 +1,18 @@
 [Jenkins]
-rizky ansible_host=ip laptop2 ansible_user=laptop2 user ansible_password=your password
+rizky ansible_host=ip-laptop2 ansible_user=user-laptop2 ansible_password=password-laptop2
 
 [masters]
-k8s-master ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
+k8s-master ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
 
 [workers]
-k8s-worker1 ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
-k8s-worker2 ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
+k8s-worker1 ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
+k8s-worker2 ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
 
+[masters-cluster2]
+k8s-master ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
 
-[masters-cluster-2]
-k8s-master-cluster-2 ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
-
-[workers-cluster-2]
-k8s-worker1-cluster-2 ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
-k8s-worker2-cluster-2 ansible_host=your cluster ip ansible_user=ubuntu ansible_password=your password
-
+[workers-cluster2]
+k8s-worker1 ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
+k8s-worker2 ansible_host=your cluster ip ansible_user=user-node ansible_password=password-node
 [all:vars]
 ansible_ssh_common_args='-o ProxyJump=rizki@ip laptop1 -o StrictHostKeyChecking=no'
