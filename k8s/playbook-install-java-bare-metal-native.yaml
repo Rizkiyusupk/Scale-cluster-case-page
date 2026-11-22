@@ -1,0 +1,11 @@
+- name: install java
+  hosts: Jenkins
+  become: yes
+  tasks:
+    - name: install jdk
+      ansible.builtin.apt:
+        name:
+          - openjdk-21-jdk
+          - fontconfig
+        state: present
+        update_cache: yes

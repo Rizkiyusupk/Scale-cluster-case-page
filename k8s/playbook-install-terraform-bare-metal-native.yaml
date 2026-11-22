@@ -1,0 +1,39 @@
+- name: install terraform bare metal
+  hosts: Jenkins
+  become: yes
+  vars:
+    hashicorp_suite: "{{ 'noble' if ansible_distribution_release == 'plucky' else ansible_distribution_release }}"
+    hashicorp_fpr: "D55C0D1AC78A8D8126CB631CFC9CA96ACA026560"
+  tasks:
+    - name: Ensure keyrings directory exists
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: "0755"
+    - name: download gpg key
+      ansible.builtin.get_url:
+        url: https://apt.releases.hashicorp.com/gpg
+        dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
+        mode: "0644"
+      ### saya minta claude buat task yang ini tepat di bawah dan cuman satukarena saya sudah angkat tangan ga ngerti buat yang ini error terus wkwwk
+    - name: Read GPG key fingerprints
+      ansible.builtin.shell: >
+        gpg --show-keys --with-colons /etc/apt/keyrings/hashicorp-archive-keyring.asc
+        | awk -F: '/^fpr:/ {print $10}'
+      register: hc_fpr
+      changed_when: false
+      failed_when: hashicorp_fpr not in hc_fpr.stdout_lines
+
+    - name: Add HashiCorp apt repository
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [arch={{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}
+          signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc]
+          https://apt.releases.hashicorp.com {{ hashicorp_suite }} main
+        filename: hashicorp
+        state: present
+    - name: install terraform
+      ansible.builtin.apt:
+        name: terraform
+        state: present
+        update_cache: yes
